@@ -1,0 +1,50 @@
+<h2>Demo Form: Sku</h2>
+<form #f="ngForm" (ngSubmit)="onSubmit(f.value)" class="p-2">
+
+    <div class="form-group">
+        <label for="skuInput">sku</label>
+        <input type="text" ngModel class="form-control" name="sku" id="skuInput" placeholder="">
+    </div>
+
+    <button class="btn btn-primary mt-1" type="submit">Submit</button>
+
+</form>
+
+<hr>
+
+
+<h2>Validators</h2>
+<!-- si queremos usar un form que no use ngForm usamos ngNoForm -->
+<form [formGroup]="myForm" (ngSubmit)="onSubmit(myForm.value)" class="p-2">
+
+    <div class="form-group">
+        <label for="skuInput">sku</label>
+        <input type="text" [class.error-input]="myForm.controls['sku'].invalid && myForm.controls['sku'].touched"
+            formControlName="sku" class="form-control" name="sku" id="skuInput">
+    </div>
+    <div *ngIf="sku.hasError('required')" class="ui error message">SKU is required</div>
+    <div *ngIf="sku.errors && sku.errors['invalid'] " class="ui error message">
+        SKU must begin with <span>123</span>
+    </div>
+
+    <button class="btn btn-primary mt-1" type="submit">Submit</button>
+
+</form>
+
+<hr>
+
+<h2>Demo from with ngModel </h2>
+<!-- si queremos usar un form que no use ngForm usamos ngNoForm -->
+<form class="p-2">
+
+    <div class="alert alert-primary" role="alert">
+       The Product name is: {{ productName }}
+    </div>
+    <div class="form-group">
+        <label for="productNameID">Product Name</label>
+        <input type="text" [(ngModel)]="productName" class="form-control" name="sku" id="productNameID">
+    </div>
+
+    <button class="btn btn-primary mt-1" type="submit">Submit</button>
+
+</form>
